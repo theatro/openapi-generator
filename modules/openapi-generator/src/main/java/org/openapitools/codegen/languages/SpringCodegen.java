@@ -351,11 +351,6 @@ public class SpringCodegen extends AbstractJavaCodegen
             importMapping.put("ApiUtil", apiPackage() + ".ApiUtil");
         }
 
-        if (this.apiFirst) {
-            apiTemplateFiles.clear();
-            modelTemplateFiles.clear();
-        }
-
         if ("threetenbp".equals(dateLibrary)) {
             supportingFiles.add(new SupportingFile("customInstantDeserializer.mustache",
                     (sourceFolder + File.separator + configPackage).replace(".", java.io.File.separator), "CustomInstantDeserializer.java"));
@@ -394,6 +389,10 @@ public class SpringCodegen extends AbstractJavaCodegen
             additionalProperties.put("useSpringfox", true);
         }
 
+        if (this.apiFirst) {
+            apiTemplateFiles.clear();
+            modelTemplateFiles.clear();
+        }
 
         // Some well-known Spring or Spring-Cloud response wrappers
         switch (this.responseWrapper) {
